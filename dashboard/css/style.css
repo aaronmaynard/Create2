@@ -1,0 +1,215 @@
+body {
+	margin:0;
+	height: 100%;
+	background-color: #3d3c3e;
+	color: #bfbfbf;
+	font-family:Verdana,sans-serif;
+	font-size: medium;
+}
+
+#pageHeader{
+	top: 0px;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	background-color: #19191f;
+	text-align: center;
+}
+
+#pageHeader span {
+	padding: 10px 0px 0px 20px;
+	display: block;
+	color: white;
+	font-size: xx-large;
+}
+
+#pageFooter{
+	bottom: 0px;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	background-color: #19191f;
+	text-align: right;
+	font-size: small;
+	text-decoration: none;
+}
+
+#pageFooter ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#pageFooter ul li{
+	float:right;
+	border-left: 2px solid #2e2e35;
+	display: block;
+	padding: 5px 20px;
+}
+
+#pageFooter ul li div{
+	padding-top: 5px;
+}
+
+#pageFooter ul li:first-child{
+	float:left;
+	border-right: 2px solid #2e2e35;
+	border-left: none;
+}
+
+#pageContent{
+	margin-top: 60px;
+}
+
+#panelLeft{
+	height: calc(100% - 120px);
+	width: 30%;
+	overflow:scroll;
+	overflow-x: hidden;
+	position:fixed;
+	z-index:10;
+	background-color: #1d1f27;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #474859; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #474859; 
+  border-radius: 5px;
+}
+
+div#panelLeft:hover::-webkit-scrollbar-thumb {
+  background: #72748d; 
+}
+
+#map{
+	padding-left: 30%;
+	width: 70%;
+}
+
+.footerTitle{
+	float:right;
+	padding-left:10px;
+}
+
+.footerStatus{
+	color: #fff;
+}
+
+.footerImg{
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.footerLogo{
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	width: 105px;
+}
+
+.section, .sContent{
+	background-color: #1f1f27;
+}
+
+.sHeader{
+	color: #fff;
+	font-weight: bold;
+	width: 100%-10px;
+	background-color: #474859;
+	padding: 10px 0px 10px 10px;
+}
+
+.scItem{
+	padding: 20px 20px 18px 20px;
+	border-bottom: 2px solid #2e2e35;
+}
+
+.sciHeader{
+	color: #fff;
+	padding: 0px 0px 8px 0px;
+	font-weight: bold;
+}
+
+.scic{
+	padding-top: 2px;
+	padding-bottom: 2px;	
+}
+
+.sciTitle{
+	font-weight: bold;
+	color: #fff;
+}
+
+.sciDesc{
+	font-size: small;
+}
+
+.scicData{
+	float: right;
+	color: #ffffff;
+}
+
+.sciButton{
+	float: right;
+	display:inline-block;
+	padding: 8px 16px;
+	margin-left: 5px;
+	border-color: #000;
+	vertical-align: middle;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background-color: inherit;
+	text-align: center;
+	cursor: pointer;
+	white-space: nowrap;
+	border-radius:8px;
+	color:#fff;
+}
+
+.btnCancel{
+	background-color:#f44336;
+}
+
+.btnCancel:hover{
+	background-color:#d2190b;
+	
+}
+
+.btnActivate{
+	background-color:#2196F3;
+}
+
+.btnActivate:hover{
+	background-color:#0a6ebd;
+}
+
+.btnDisabled{
+	cursor: not-allowed;
+	background-color:#c4c4c4;
+	color: #000;
+}
+
+#joystick{
+	position: fixed;
+	bottom: 175px;
+	right: 125px;
+}
+
+div#nipple_0_0 .front{
+    background-image: url(../images/jfront.png) !important;
+}
+div#nipple_0_0 .back{
+    background-image: url(../images/jback.png) !important;
+}
