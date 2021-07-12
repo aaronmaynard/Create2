@@ -25,8 +25,8 @@ USB to TTL Serial Cable - [Adafruit](https://www.adafruit.com/product/954)
 
 | Color | Name |
 |--|--|
-| Red | Power |
-| Black | Ground |
+| Red | Vpwr |
+| Black | GND |
 | White | RX into USB Port |
 | Green | TX out of USB Port |
 
@@ -34,14 +34,14 @@ Mini-iRobot DIN Connector Cable 6' - [Adafruit](https://www.adafruit.com/product
 
 | Color | Pin | Name | Description |
 |--|--|--|--|
-| Red | X | X | X |
-| Black 1 | X | X | X |
-| Black 2| X | X | X |
-| Green | X | X | X |
-| Yellow | X | X | X |
-| Orange | X | X | X |
-| Purple | X | X | X |
-| Brown | X | X | X |
+| Red | 2 | Vpwr | Roomba battery + (unregulated)  |
+| Black (thin) | 4 | TXD | 0 – 5V Serial output from Roomba |
+| Black (thick)| O | O | Outer shell |
+| Green | 5 | BRC | Baud Rate Change |
+| Yellow | 6 | GND | Roomba battery ground |
+| Orange | 7 | GND | Roomba battery ground |
+| Purple | 1   | Vpwr | Roomba battery + (unregulated) |
+| Brown | 3 | RXD | 0 – 5V Serial input to Roomba |
 
 
 SPDT Slide Switch - [Adafruit](https://www.adafruit.com/product/805)
@@ -57,5 +57,5 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 
 | Color | Name |
 |--|--|
-| Red | Power |
-| Black | Ground |
+| Red | Vpwr |
+| Black | GND|
