@@ -18,3 +18,44 @@ To follow along with this process you will need:
  - keyboard / monitor + HDMI cable
  - iRobot Create2 programmable robot
  - iRobot Create2 Serial-USB (should be included)
+
+## Part Specifications
+
+USB to TTL Serial Cable - [Adafruit](https://www.adafruit.com/product/954)
+
+| Color | Name |
+|--|--|
+| Red | Power |
+| Black | Ground |
+| White | RX into USB Port |
+| Green | TX out of USB Port |
+
+Mini-iRobot DIN Connector Cable 6' - [Adafruit](https://www.adafruit.com/product/2438)
+
+| Color | Pin | Name | Description |
+|--|--|--|--|
+| Red | X | X | X |
+| Black 1 | X | X | X |
+| Black 2| X | X | X |
+| Green | X | X | X |
+| Yellow | X | X | X |
+| Orange | X | X | X |
+| Purple | X | X | X |
+| Brown | X | X | X |
+
+
+SPDT Slide Switch - [Adafruit](https://www.adafruit.com/product/805)
+
+| Pin | Name |
+|--|--|
+| 1 | Power Out |
+| 2 | Power In |
+| 3 | Power Out |
+
+
+UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
+
+| Color | Name |
+|--|--|
+| Red | Power |
+| Black | Ground |
