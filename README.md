@@ -59,3 +59,9 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 |--|--|
 | Red | Vpwr |
 | Black | GND|
+
+# Running the robot
+
+`roslaunch create_bringup create_2.launch`
+
+`roslaunch robot_gui_bridge websocket.launch`
