@@ -406,6 +406,73 @@ createJoystick = function() {
         linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance / max_distance;
         angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance / max_distance;
     });
+
+    var myKeyArray = [false, false, false, false];
+	
+    window.addEventListener('keydown', function (e) {
+        if(e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown'){
+            console.log(e.key);
+            var ykey, xkey;
+            if(e.key === 'ArrowUp'){
+                myKeyArray[0] = true;
+                ykey = "-50px";
+            }else if(e.key === 'ArrowDown'){
+                myKeyArray[1] = true;
+                ykey = "50px";
+            }else if(e.key === 'ArrowLeft'){
+                myKeyArray[2] = true;
+                xkey = "-50px";
+            }else if(e.key === 'ArrowRight'){
+                myKeyArray[3] = true;
+                xkey = "50px";
+            }else{
+                // Do nothing
+            }
+            
+            document.getElementById('nipple_0_0').style.opacity = "1.0";
+            document.getElementById("joystick").getElementsByClassName("front")[0].style.top = ykey;
+            document.getElementById("joystick").getElementsByClassName("front")[0].style.left = xkey;
+	}
+    })
+
+    window.addEventListener('keyup', function (e) {
+        if(e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown'){
+            console.log("Released");
+            var ykey, xkey;
+            if(e.key === 'ArrowUp'){
+                myKeyArray[0] = false;
+                ykey = "0px";
+            }else if(e.key === 'ArrowDown'){
+                myKeyArray[1] = false;
+                ykey = "0px";
+            }else if(e.key === 'ArrowLeft'){
+                myKeyArray[2] = false;
+                xkey = "0px";
+            }else if(e.key === 'ArrowRight'){
+                myKeyArray[3] = false;
+                xkey = "0px";
+            }else{
+                // Do nothing
+            }
+            
+            document.getElementById("joystick").getElementsByClassName("front")[0].style.top = ykey;
+            document.getElementById("joystick").getElementsByClassName("front")[0].style.left = xkey;
+		
+            var bool = false;
+	    for (index = 0; index < myKeyArray.length; index++){
+		if(myKeyArray[index]){
+			bool = true;
+		}
+		}
+		if(bool){
+			//There is still a key pressed
+		}else{
+			document.getElementById('nipple_0_0').style.opacity = "0.5";
+			self.move(0, 0);
+		}
+	}
+    })
+
 }
 window.onload = function() {
     createJoystick();
