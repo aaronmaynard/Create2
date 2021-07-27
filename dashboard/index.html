@@ -386,7 +386,7 @@ createJoystick = function() {
 
     manager.on('start', function(event, nipple) {
         timer = setInterval(function() {
-            move(linear_speed, angular_speed);
+            move(linear_speed/10, angular_speed);
         }, 25);
     });
 
