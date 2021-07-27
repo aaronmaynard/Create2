@@ -157,8 +157,8 @@
 					</div>
 					<div class="sContent">
 						<div class="scItem">
-							<button id="sendDock" class="sciButton btnActivate">Send</button>
-							<button id="cancelDock" class="sciButton btnCancel">Cancel</button>
+							<button id="sendDock" class="sciButton btnActivate" onclick="dockFunction()">Send</button>
+							<button id="cancelDock" class="sciButton btnCancel" onclick="undockFunction()">Abort</button>
 							<div class="sciTitle">
 								Seek Dock
 							</div>
@@ -204,6 +204,133 @@ cmd_vel_listener = new ROSLIB.Topic({
     messageType: 'geometry_msgs/Twist'
 });
 
+docking_button = new ROSLIB.Topic({
+    ros: ros,
+    name: "/dock",
+    messageType: 'std_msgs/Empty'
+});
+
+cancel_button = new ROSLIB.Topic({
+    ros: ros,
+    name: "/undock",
+    messageType: 'std_msgs/Empty'
+});
+
+
+dockFunction = function() {
+    docking_button.publish();
+	document.getElementById("autonomyImg").src = "images/autonomy/on.png";
+	document.getElementById("AutonomyState").innerHTML = "ACTIVE";
+};
+
+
+undockFunction = function() {
+    cancel_button.publish();
+	document.getElementById("autonomyImg").src = "images/autonomy/off.png";
+	document.getElementById("AutonomyState").innerHTML = "DISABLED";
+};
+
+// Listener
+
+var txt_listener = new ROSLIB.Topic({
+    ros: ros,
+    name: '/txt_msg',
+    messageType: 'std_msgs/String'
+});
+
+txt_listener.subscribe(function(m) {
+    document.getElementById("msg").innerHTML = m.data;
+});
+
+charge_current_listener = new ROSLIB.Topic({
+	ros: ros,
+	name: "/battery/current",
+	messageType: 'std_msgs/Float32'
+});
+
+var charging;
+
+charge_current_listener.subscribe(function(m) {
+	var shorten = m.data.toFixed(2);
+    document.getElementById("current").innerHTML = shorten;
+	if(shorten > 0){
+		charging = true;
+	}else{
+		charging = false;
+	}
+});
+
+charge_ratio_listener = new ROSLIB.Topic({
+	ros: ros,
+	name: "/battery/charge_ratio",
+	messageType: 'std_msgs/Float32'
+});
+charge_ratio_listener.subscribe(function(m) {
+	var shorten = m.data.toFixed(2) * 100;
+	
+	if(charging){
+		document.getElementById("batteryImg").src = "images/battery/charging.png";
+	}else if(shorten <= 10){
+		document.getElementById("batteryImg").src = "images/battery/empty.png";
+	}else if(shorten > 10 && shorten <= 25){
+		document.getElementById("batteryImg").src = "images/battery/critical.png";
+	}else if(shorten > 25 && shorten <= 70){
+		document.getElementById("batteryImg").src = "images/battery/low.png";
+	}else if(shorten > 70){
+		document.getElementById("batteryImg").src = "images/battery/high.png";
+	}
+    document.getElementById("battryState").innerHTML = shorten + "%";
+});
+
+
+charge_capacity_listener = new ROSLIB.Topic({
+	ros: ros,
+	name: "/battery/capacity",
+	messageType: 'std_msgs/Float32'
+});
+
+charge_capacity_listener.subscribe(function(m) {
+	var shorten = m.data.toFixed(2);
+    document.getElementById("capacity").innerHTML = shorten;
+	current = shorten;
+});
+
+
+charge_listener = new ROSLIB.Topic({
+	ros: ros,
+	name: "/battery/charge",
+	messageType: 'std_msgs/Float32'
+});
+
+charge_listener.subscribe(function(m) {
+	var shorten = m.data.toFixed(2);
+    document.getElementById("charge").innerHTML = shorten;
+});
+
+
+voltage_listener = new ROSLIB.Topic({
+	ros: ros,
+	name: "/battery/voltage",
+	messageType: 'std_msgs/Float32'
+});
+
+voltage_listener.subscribe(function(m) {
+	var shorten = m.data.toFixed(2);
+    document.getElementById("voltage").innerHTML = shorten;
+});
+
+
+
+temp_listener = new ROSLIB.Topic({
+	ros: ros,
+	name: "/battery/temperature",
+	messageType: 'std_msgs/Int16'
+});
+
+temp_listener.subscribe(function(m) {
+	var shorten = m.data.toFixed(2);
+    document.getElementById("temperature").innerHTML = shorten;
+});
 
 // JOYSTICK
 
@@ -283,17 +410,6 @@ createJoystick = function() {
 window.onload = function() {
     createJoystick();
 }
-		
-// Listener
-var txt_listener = new ROSLIB.Topic({
-    ros: ros,
-    name: '/txt_msg',
-    messageType: 'std_msgs/String'
-});
-
-txt_listener.subscribe(function(m) {
-    document.getElementById("msg").innerHTML = m.data;
-});
 		</script>
 	</body>
 </html>
