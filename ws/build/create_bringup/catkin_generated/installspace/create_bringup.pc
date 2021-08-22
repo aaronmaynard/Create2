@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/Create2/ws/install
+
+Name: create_bringup
+Description: Description of create_bringup
+Version: 1.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

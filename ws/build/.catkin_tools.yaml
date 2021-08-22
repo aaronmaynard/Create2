@@ -1,0 +1,6 @@
+devel_space: /home/ubuntu/Create2/ws/devel
+install: false
+install_space: /home/ubuntu/Create2/ws/install
+profile: default
+source_space: /home/ubuntu/Create2/ws/src
+workspace: /home/ubuntu/Create2/ws
