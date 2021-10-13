@@ -1,6 +1,0 @@
-create_robot/create_driver
-/home/ubuntu/Create2/ws/devel/.private/create_driver/cmake.lock /home/ubuntu/Create2/ws/devel/./cmake.lock
-/home/ubuntu/Create2/ws/devel/.private/create_driver/share/create_driver/cmake/create_driverConfig.cmake /home/ubuntu/Create2/ws/devel/share/create_driver/cmake/create_driverConfig.cmake
-/home/ubuntu/Create2/ws/devel/.private/create_driver/share/create_driver/cmake/create_driverConfig-version.cmake /home/ubuntu/Create2/ws/devel/share/create_driver/cmake/create_driverConfig-version.cmake
-/home/ubuntu/Create2/ws/devel/.private/create_driver/lib/pkgconfig/create_driver.pc /home/ubuntu/Create2/ws/devel/lib/pkgconfig/create_driver.pc
-/home/ubuntu/Create2/ws/devel/.private/create_driver/lib/create_driver/create_driver /home/ubuntu/Create2/ws/devel/lib/create_driver/create_driver

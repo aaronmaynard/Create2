@@ -1,2 +1,0 @@
-set(create_msgs_MESSAGE_FILES "/home/ubuntu/Create2/ws/src/create_robot/create_msgs/msg/Bumper.msg;/home/ubuntu/Create2/ws/src/create_robot/create_msgs/msg/ChargingState.msg;/home/ubuntu/Create2/ws/src/create_robot/create_msgs/msg/DefineSong.msg;/home/ubuntu/Create2/ws/src/create_robot/create_msgs/msg/Mode.msg;/home/ubuntu/Create2/ws/src/create_robot/create_msgs/msg/PlaySong.msg")
-set(create_msgs_SERVICE_FILES "")
