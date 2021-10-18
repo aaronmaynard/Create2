@@ -42,3 +42,4 @@ Run `sudo chmod +x post-installer.sh`
 
 Run `sudo bash [post-installer.sh](https://github.com/aaronmaynard/Create2)`
 
+eof
