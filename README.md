@@ -10,7 +10,7 @@ Launch Raspberry Pi Imager v1.6.2
 
 Set **Operating System** to **RASPBERRY PI OS LITE (32-BIT)**
 
-Set **Storage** to the device hosting your SD card
+Set **Storage** to the device hosting your SD card (need 8+ gb)
 
 Write to the storage device - A warning will appear declaring all existing data on the storage device will be erased
 
