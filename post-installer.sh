@@ -49,5 +49,5 @@ sudo apt-get install ros-melodic-rosbridge-server
 # Finishing install
 echo [POST-INSTALLER] - $(date +"%T") - Checking permissions and sourcing workspace...
 sudo usermod -a -G dialout $USER
-echo "source ~/create_ws/devel/setup.bash" >> ~/.bashrc
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
