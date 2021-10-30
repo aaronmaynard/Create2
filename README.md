@@ -66,3 +66,5 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 
 `roslaunch rosbridge_server rosbridge_websocket.launch`
 
+`roslaunch rplidar_ros view_rplidar.launch`
+
