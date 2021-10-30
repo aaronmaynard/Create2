@@ -68,3 +68,5 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 
 `roslaunch rplidar_ros view_rplidar.launch`
 
+`roslaunch raspicam_node camerav1_1280x720.launch`
+
