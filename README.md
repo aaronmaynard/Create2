@@ -59,3 +59,12 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 |--|--|
 | Red | Vpwr |
 | Black | GND|
+
+### Testing
+
+
+```
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+```
