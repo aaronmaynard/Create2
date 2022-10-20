@@ -1,6 +1,6 @@
 # ROS on Create2
 
-Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu 18.04.5** and **ROS Melodic**. 
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
 
 
 ## Prerequisites
