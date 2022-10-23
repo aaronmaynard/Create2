@@ -67,6 +67,7 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 roslaunch dingo_gazebo dingo_world.launch
 roslaunch dingo_viz view_robot.launch
 roslaunch rosbridge_server rosbridge_websocket.launch
+rosrun web_video_server web_video_server
 ```
 
 ### Building Packages
