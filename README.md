@@ -68,3 +68,11 @@ roslaunch dingo_gazebo dingo_world.launch
 roslaunch dingo_viz view_robot.launch
 roslaunch rosbridge_server rosbridge_websocket.launch
 ```
+
+### Building Packages
+
+```
+cd ~/catkin_ws
+rosdep install --from-paths src --ignore-src -r -y
+catkin_make
+```
