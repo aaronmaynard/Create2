@@ -60,6 +60,29 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 | Red | Vpwr |
 | Black | GND|
 
+
+
+### Exports
+
+```
+export M_PI=3.14159265359
+export DINGO_LASER=1
+export DINGO_LASER_MOUNT='front'
+export DINGO_LASER_TOPIC='front/scan'
+export DINGO_LASER_TOWER=1
+export DINGO_LASER_PREFIX=${DINGO_LASER_MOUNT}
+export DINGO_LASER_PARENT=${DINGO_LASER_MOUNT}_mount
+export DINGO_LASER_MODEL='lms1xx' # or 'ust10'
+export DINGO_LASER_OFFSET='0 0 0'
+export DINGO_LASER_RPY='0 0 0'
+export DINGO_REALSENSE=1
+export DINGO_REALSENSE_MODEL='d435' # or 'd435i', 'd415', 'd455', 'l515'
+export DINGO_REALSENSE_MOUNT='front'
+export DINGO_REALSENSE_TOPIC='realsense'
+export DINGO_REALSENSE_OFFSET='0 0 0'
+export DINGO_REALSENSE_RPY='0 0 0'
+```
+
 ### Testing for SD
 
 
@@ -68,6 +91,7 @@ roslaunch dingo_gazebo dingo_world.launch
 roslaunch dingo_viz view_robot.launch
 roslaunch rosbridge_server rosbridge_websocket.launch
 rosrun web_video_server web_video_server
+roslaunch dingo_viz view_robot.launch
 ```
 
 ### Building Packages
