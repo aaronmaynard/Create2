@@ -79,7 +79,7 @@ export DINGO_REALSENSE=1
 export DINGO_REALSENSE_MODEL='d435' # or 'd435i', 'd415', 'd455', 'l515'
 export DINGO_REALSENSE_MOUNT='front'
 export DINGO_REALSENSE_TOPIC='realsense'
-export DINGO_REALSENSE_OFFSET='0 0 0'
+export DINGO_REALSENSE_OFFSET='0.03 -0.002 0'
 export DINGO_REALSENSE_RPY='0 0 0'
 ```
 
@@ -88,10 +88,9 @@ export DINGO_REALSENSE_RPY='0 0 0'
 
 ```
 roslaunch dingo_gazebo dingo_world.launch
-roslaunch dingo_viz view_robot.launch
 roslaunch rosbridge_server rosbridge_websocket.launch
 rosrun web_video_server web_video_server
-roslaunch dingo_viz view_robot.launch
+roslaunch dingo_viz view_robot.launch config:=localization
 ```
 
 ### Building Packages
