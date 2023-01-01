@@ -1,6 +1,21 @@
 # ROS on Create2
 
+<<<<<<< HEAD
 This is the deployment branch of the ROS on Create2 project. This branch has purposefully been stripped to the bare tools to be downloaded onto the filesystem, and will include an executable file that will download dependencies if neccessary and install them.  The goal is to have a robot ready to go once the executable has finished.
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
+=======
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu 18.04.5** and **ROS Melodic**. 
+>>>>>>> origin/melodic
+=======
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu 18.04.5** and **ROS Melodic**. 
+=======
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
+>>>>>>> origin/noetic
+>>>>>>> melodic
+>>>>>>> foxy
 
 # Installing PiCreate Software
 
@@ -38,8 +53,80 @@ From here you should be able to SSH into the device after establishing the IP ad
 
 ## Complete the installation
 
+<<<<<<< HEAD
 Run `sudo chmod +x post-installer.sh`
 
 Run `sudo bash [post-installer.sh](https://github.com/aaronmaynard/Create2)`
 
 eof
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+### Testing
+
+
+```
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+```
+=======
+=======
+>>>>>>> melodic
+# Running the robot
+
+`roslaunch create_bringup create_2.launch`
+
+`roslaunch rosbridge_server rosbridge_websocket.launch`
+
+`roslaunch rplidar_ros view_rplidar.launch`
+
+`roslaunch raspicam_node camerav1_1280x720.launch`
+
+<<<<<<< HEAD
+>>>>>>> origin/melodic
+=======
+=======
+
+
+### Exports
+
+```
+export M_PI=3.14159265359
+export DINGO_LASER=1
+export DINGO_LASER_MOUNT='front'
+export DINGO_LASER_TOPIC='front/scan'
+export DINGO_LASER_TOWER=1
+export DINGO_LASER_PREFIX=${DINGO_LASER_MOUNT}
+export DINGO_LASER_PARENT=${DINGO_LASER_MOUNT}_mount
+export DINGO_LASER_MODEL='lms1xx' # or 'ust10'
+export DINGO_LASER_OFFSET='0 0 0'
+export DINGO_LASER_RPY='0 0 0'
+export DINGO_REALSENSE=1
+export DINGO_REALSENSE_MODEL='d435' # or 'd435i', 'd415', 'd455', 'l515'
+export DINGO_REALSENSE_MOUNT='front'
+export DINGO_REALSENSE_TOPIC='realsense'
+export DINGO_REALSENSE_OFFSET='0.03 -0.002 0'
+export DINGO_REALSENSE_RPY='0 0 0'
+```
+
+### Testing for SD
+
+
+```
+roslaunch dingo_gazebo dingo_world.launch
+roslaunch rosbridge_server rosbridge_websocket.launch
+rosrun web_video_server web_video_server
+roslaunch dingo_viz view_robot.launch config:=localization
+```
+
+### Building Packages
+
+```
+cd ~/catkin_ws
+rosdep install --from-paths src --ignore-src -r -y
+catkin_make
+```
+>>>>>>> origin/noetic
+>>>>>>> melodic
+>>>>>>> foxy
