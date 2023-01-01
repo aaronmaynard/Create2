@@ -1,21 +1,7 @@
 # ROS on Create2
 
-<<<<<<< HEAD
-This is the deployment branch of the ROS on Create2 project. This branch has purposefully been stripped to the bare tools to be downloaded onto the filesystem, and will include an executable file that will download dependencies if neccessary and install them.  The goal is to have a robot ready to go once the executable has finished.
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
 Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
-=======
-Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu 18.04.5** and **ROS Melodic**. 
->>>>>>> origin/melodic
-=======
-Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu 18.04.5** and **ROS Melodic**. 
-=======
-Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
->>>>>>> origin/noetic
->>>>>>> melodic
->>>>>>> foxy
+
 
 # Installing PiCreate Software
 
@@ -53,15 +39,10 @@ From here you should be able to SSH into the device after establishing the IP ad
 
 ## Complete the installation
 
-<<<<<<< HEAD
 Run `sudo chmod +x post-installer.sh`
 
 Run `sudo bash [post-installer.sh](https://github.com/aaronmaynard/Create2)`
 
-eof
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
 ### Testing
 
 
@@ -70,9 +51,7 @@ ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
 
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
-=======
-=======
->>>>>>> melodic
+
 # Running the robot
 
 `roslaunch create_bringup create_2.launch`
@@ -82,12 +61,6 @@ ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 `roslaunch rplidar_ros view_rplidar.launch`
 
 `roslaunch raspicam_node camerav1_1280x720.launch`
-
-<<<<<<< HEAD
->>>>>>> origin/melodic
-=======
-=======
-
 
 ### Exports
 
@@ -127,6 +100,3 @@ cd ~/catkin_ws
 rosdep install --from-paths src --ignore-src -r -y
 catkin_make
 ```
->>>>>>> origin/noetic
->>>>>>> melodic
->>>>>>> foxy
