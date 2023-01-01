@@ -1,0 +1,25 @@
+body {
+	margin:0;
+	padding:0;	
+	height: 100%;
+	background-color: black;
+	color: white;
+	font-family:Verdana,sans-serif;
+	font-size: medium;
+	text-align: center;
+}
+
+#steamdeck_window{
+	height: 800px;
+	width: 1280px;
+	background-color: gray;
+	background-image: url('http://localhost:8080/stream?topic=/realsense/color/image_raw');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#camera_view{
+	height: inherit;
+	width: inherit;
+}
+
