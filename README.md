@@ -1,6 +1,10 @@
 # ROS on Create2
 
+<<<<<<< HEAD
 Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
+=======
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu 18.04.5** and **ROS Melodic**. 
+>>>>>>> origin/melodic
 
 
 ## Prerequisites
@@ -60,6 +64,7 @@ UBEC SC/SC Converter 5V @ 3A - [Adafruit](https://www.adafruit.com/product/1385)
 | Red | Vpwr |
 | Black | GND|
 
+<<<<<<< HEAD
 ### Testing
 
 
@@ -68,3 +73,15 @@ ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
 
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
+=======
+# Running the robot
+
+`roslaunch create_bringup create_2.launch`
+
+`roslaunch rosbridge_server rosbridge_websocket.launch`
+
+`roslaunch rplidar_ros view_rplidar.launch`
+
+`roslaunch raspicam_node camerav1_1280x720.launch`
+
+>>>>>>> origin/melodic

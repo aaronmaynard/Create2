@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/Create2/ws/install
+
+Name: create_description
+Description: Description of create_description
+Version: 1.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
