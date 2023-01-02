@@ -1,24 +1,32 @@
+
 # ROS on Create2
 
-Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS on the iRobot Create2.  Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated.  I am using **Ubuntu Focal 20.04.5** and **ROS2 Foxy**. 
+Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS2 on the iRobot Create2. Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated. I am using the following in this branch:
 
+**Software**
+Ubuntu Focal 20.04.5
+ROS2 Foxy
+**Hardware**
+Raspberry Pi Model 3B+
+Intel RealSense D435
+RPLiDAR A1
+iRobot Create 2
 
 # Installing PiCreate Software
 
 ## Flashing SD card with Raspbian
 
-Launch Raspberry Pi Imager v1.6.2
+Launch [Raspberry Pi Imager](https://www.raspberrypi.com/software/) v1.6.2 or greater.
 
-Set **Operating System** to **RASPBERRY PI OS LITE (32-BIT)**
+Set **Operating System** to **Ubuntu Server 20.04.5 LTS (64-bit)**. If this version is no longer available, you can download the image directly from Ubuntu's archives and select "Use custom".
 
-Set **Storage** to the device hosting your SD card (need 8+ gb)
+Set **Storage** to the device hosting your SD card (+ gb, 32 gb recommended).
 
-Write to the storage device - A warning will appear declaring all existing data on the storage device will be erased
-
+Write to the storage device - A warning will appear declaring all existing data on the storage device will be erased.
 
 ## Set wireless connection via boot partition
 
-Enter the `/Volumes/boot` directory - this will be the root directory on windows
+Enter the `/Volumes/boot` directory - this will be the root directory on windows.
 
 Create a `wpa_supplicant.conf` file with the following:
 
@@ -30,10 +38,11 @@ Create a `wpa_supplicant.conf` file with the following:
 >     psk="YOUR_PASSWORD"
 >     key_mgmt=WPA-PSK
 > }
+> ```
 
-Put the SD card into the Raspberry Pi - Booting the device will cause the file to disappear from the SD card's boot directory automatically
+Create a file named `ssh` with no extension - file content does not matter.
 
-Create a file named `ssh` with no extension - file content does not matter
+Put the SD card into the Raspberry Pi - Booting the device will cause the files to disappear from the SD card's boot directory automatically.
 
 From here you should be able to SSH into the device after establishing the IP address - username `pi`, password `raspberry`
 
@@ -45,7 +54,6 @@ Run `sudo bash [post-installer.sh](https://github.com/aaronmaynard/Create2)`
 
 ### Testing
 
-
 ```
 ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
 
@@ -54,49 +62,21 @@ ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 
 # Running the robot
 
-`roslaunch create_bringup create_2.launch`
-
-`roslaunch rosbridge_server rosbridge_websocket.launch`
-
-`roslaunch rplidar_ros view_rplidar.launch`
-
-`roslaunch raspicam_node camerav1_1280x720.launch`
-
-### Exports
-
-```
-export M_PI=3.14159265359
-export DINGO_LASER=1
-export DINGO_LASER_MOUNT='front'
-export DINGO_LASER_TOPIC='front/scan'
-export DINGO_LASER_TOWER=1
-export DINGO_LASER_PREFIX=${DINGO_LASER_MOUNT}
-export DINGO_LASER_PARENT=${DINGO_LASER_MOUNT}_mount
-export DINGO_LASER_MODEL='lms1xx' # or 'ust10'
-export DINGO_LASER_OFFSET='0 0 0'
-export DINGO_LASER_RPY='0 0 0'
-export DINGO_REALSENSE=1
-export DINGO_REALSENSE_MODEL='d435' # or 'd435i', 'd415', 'd455', 'l515'
-export DINGO_REALSENSE_MOUNT='front'
-export DINGO_REALSENSE_TOPIC='realsense'
-export DINGO_REALSENSE_OFFSET='0.03 -0.002 0'
-export DINGO_REALSENSE_RPY='0 0 0'
-```
-
-### Testing for SD
-
-
-```
-roslaunch dingo_gazebo dingo_world.launch
-roslaunch rosbridge_server rosbridge_websocket.launch
-rosrun web_video_server web_video_server
-roslaunch dingo_viz view_robot.launch config:=localization
-```
+Create 2 Bridge
+`ros2 launch create_bringup create_2.launch`
+RPLiDAR
+`ros2 run rplidar_ros rplidar_composition`
+RealSense
+`ros2 run realsense2_camera realsense2_camera_node`
+ROSBridge Suite
+`ros2 run rosbridge_server rosbridge_websocket`
+Web Video Server
+`ros2 run web_video_server web_video_server`
 
 ### Building Packages
 
 ```
-cd ~/catkin_ws
+cd ~/ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
-catkin_make
+colcon build
 ```

@@ -1,53 +1,50 @@
 #!/bin/bash
 # Post installation script to install dependencies needed to run the picreate robot.
-# Aaron Maynard October 13th, 2021
+# Aaron Maynard
+# January 1st, 2023
+# Make this file an executable via 'chmod +x post-installer.sh'
+# Run this file via './post-installer.sh'
 echo [POST-INSTALLER] - $(date +"%T") - Starting post-installer script...
 echo [POST-INSTALLER] - $(date +"%T") - Setting up ROS repositories...
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-# Command has changed to utilize Ubuntu keyserver as some may experience issues with ha.pool.kys-keyservers.net
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-sudo apt-get update
-sudo apt-get upgrade -y
-# Enable Pi Camera
-sudo raspi-config nonint do_camera 0
-# Bootstrap Dependencies
-echo [POST-INSTALLER] - $(date +"%T") - Installing bootstrap dependencies...
-sudo apt install -y python-rosdep python-rosinstall-generator python-wstool python-rosinstall build-essential cmake
-sudo rosdep init
-rosdep update
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+sudo apt update && sudo apt install curl
+sudo curl -k -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+sudo apt update
+sudo apt upgrade -y
 # Installing ROS
 echo [POST-INSTALLER] - $(date +"%T") - Installing ROS...
-mkdir -p ~/catkin_ws
-cd ~/catkin_ws
-rosinstall_generator ros_comm --rosdistro melodic --deps --wet-only --tar > melodic-ros_comm-wet.rosinstall
-wstool init src melodic-ros_comm-wet.rosinstall
-rosdep install -y --from-paths src --ignore-src --rosdistro melodic -r --os=debian:buster
-# Building catkin workspace
-echo [POST-INSTALLER] - $(date +"%T") - Building catkin workspace...
-sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic -j2
-source /opt/ros/melodic/setup.bash
-echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-# Download and Install PiCreate packages
-echo [POST-INSTALLER] - $(date +"%T") - Downloading PiCreate packages...
-sudo apt-get install python-rosdep python-catkin-tools
-cd ~/catkin_ws
-catkin init
-cd src/
-git clone -b deployment --single-branch https://github.com/aaronmaynard/Create2.git
-echo [POST-INSTALLER] - $(date +"%T") - Installing PiCreate packages via catkin...
-cd ~/catkin_ws
+sudo apt install ros-foxy-desktop python3-argcomplete ros-dev-tools -y
+# Replace ".bash" with your shell if you're not using bash
+# Possible values are: setup.bash, setup.sh, setup.zsh
+source /opt/ros/foxy/setup.bash
+# Installing RPLiDAR
+echo [POST-INSTALLER] - $(date +"%T") - Installing RPLiDAR...
+sudo apt-get install ros-foxy-rplidar-ros -y
+# Installing RealSense Camera SDK
+echo [POST-INSTALLER] - $(date +"%T") - Installing RealSense SDK...
+sudo apt-get install ros-foxy-realsense2-camera -y
+# You can test if the install was successful via: 
+# ros2 launch realsense2_camera rs_launch.py enable_pointcloud:=true device_type:=d435
+# Installing ROSBridge Suite
+echo [POST-INSTALLER] - $(date +"%T") - Installing ROSBridgeSuite...
+sudo apt-get install ros-foxy-rosbridge-suite -y
+# Installing Create2 Bridge
+echo [POST-INSTALLER] - $(date +"%T") - Manually building the Create2 bridge...
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
+git clone https://github.com/autonomylab/create_robot.git --branch foxy
+git clone https://github.com/AutonomyLab/libcreate
+echo [POST-INSTALLER] - $(date +"%T") - Manually building Web Video Server...
+git clone https://github.com/RobotWebTools/web_video_server.git --branch ros2
+cd ~/ros2_ws
+sudo rosdep init
+# If there are issues with the above, network security may be the issue (such as Google WiFi).  Change to a different network.
 rosdep update
-rosdep install -y --from-paths src -i
-catkin build
-# Install published packages
-sudo apt-get install ros-melodic-rosbridge-server
-#
-#
-# TO DO MORE STUFF
-#
-#
+rosdep install --from-paths src -i -y
+colcon build
 # Finishing install
 echo [POST-INSTALLER] - $(date +"%T") - Checking permissions and sourcing workspace...
 sudo usermod -a -G dialout $USER
-echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+. ~/ros2_ws/install/local_setup.bash
