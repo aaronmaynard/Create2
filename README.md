@@ -3,14 +3,15 @@
 
 Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS2 on the iRobot Create2. Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated. I am using the following in this branch:
 
-**Software**
-Ubuntu Focal 20.04.5
-ROS2 Foxy
-**Hardware**
-Raspberry Pi Model 3B+
-Intel RealSense D435
-RPLiDAR A1
-iRobot Create 2
+**Software**  
+Ubuntu Focal 20.04.5  
+ROS2 Foxy  
+
+**Hardware**  
+Raspberry Pi Model 3B+  
+Intel RealSense D435  
+RPLiDAR A1  
+iRobot Create 2  
 
 # Installing PiCreate Software
 
@@ -50,28 +51,21 @@ From here you should be able to SSH into the device after establishing the IP ad
 
 Run `sudo chmod +x post-installer.sh`
 
-Run `sudo bash [post-installer.sh](https://github.com/aaronmaynard/Create2)`
+Run `sudo bash post-installer.sh`
 
-### Testing
-
-```
-ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
-
-ros2 launch rosbridge_server rosbridge_websocket_launch.xml
-```
 
 # Running the robot
 
-Create 2 Bridge
-`ros2 launch create_bringup create_2.launch`
-RPLiDAR
-`ros2 run rplidar_ros rplidar_composition`
-RealSense
-`ros2 run realsense2_camera realsense2_camera_node`
-ROSBridge Suite
-`ros2 run rosbridge_server rosbridge_websocket`
-Web Video Server
-`ros2 run web_video_server web_video_server`
+Create 2 Bridge  
+`ros2 launch create_bringup create_2.launch`  
+RPLiDAR  
+`ros2 run rplidar_ros rplidar_composition`  
+RealSense  
+`ros2 run realsense2_camera realsense2_camera_node`  
+ROSBridge Suite  
+`ros2 run rosbridge_server rosbridge_websocket`  
+Web Video Server  
+`ros2 run web_video_server web_video_server`  
 
 ### Building Packages
 
