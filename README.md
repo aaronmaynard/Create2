@@ -53,6 +53,9 @@ Run `sudo chmod +x post-installer.sh`
 
 Run `sudo bash post-installer.sh`
 
+If you run into an error such as:
+`Waiting for cache lock: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 1777 (unattended-upgr)`
+You can kill the process via `sudo kill -9 1777` replacing `1777` with whichever is described in the error.
 
 # Running the robot
 
