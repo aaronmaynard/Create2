@@ -77,3 +77,32 @@ cd ~/ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
+
+#### Failed packages
+
+In the case that some packages failed the build process due to running out of memory, such as the example below:
+```
+Starting >>> create_driver
+--- stderr: create_driver
+c++: fatal error: Killed signal terminated program cc1plus
+compilation terminated.
+make[2]: *** [CMakeFiles/create_driver.dir/build.make:63: CMakeFiles/create_driver.dir/src/create_driver.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/create_driver.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2
+---
+Failed   <<< create_driver [38min 46s, exited with code 2]
+
+Summary: 0 packages finished [38min 48s]
+  1 package failed: create_driver
+  1 package had stderr output: create_driver
+  2 packages not processed
+  ```
+  The size of the swap file can be changed, allowing for harddisk space to  be used as additional ram when needed.  To complete this process, follow the steps outlined below:
+  1. Turn off all running swap processes: `swapoff -a`
+  2. Resize swap `sudo fallocate -l 1G /swapfile` (change 1G to the gigabyte size you want it to be)
+  3. CHMOD swap: `sudo chmod 600 /swapfile`
+  4. Make file usable as swap `sudo mkswap /swapfile`
+  5. Active the swap file `sudo swapon /swapfile`
+  
+Thats it! Some commands may take some time to be executed, just wait patiently for the commands to finish.
+To verify your swap size run the following command and you will see the swap size: `free -m`
