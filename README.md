@@ -98,7 +98,7 @@ Summary: 0 packages finished [38min 48s]
   2 packages not processed
   ```
   The size of the swap file can be changed, allowing for harddisk space to  be used as additional ram when needed.  To complete this process, follow the steps outlined below:
-  1. Turn off all running swap processes: `swapoff -a`
+  1. Turn off all running swap processes: `sudo swapoff -a` (You can also run this when done with your extra "ram")
   2. Resize swap `sudo fallocate -l 1G /swapfile` (change 1G to the gigabyte size you want it to be)
   3. CHMOD swap: `sudo chmod 600 /swapfile`
   4. Make file usable as swap `sudo mkswap /swapfile`
