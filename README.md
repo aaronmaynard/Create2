@@ -59,6 +59,11 @@ You can kill the process via `sudo kill -9 1777` replacing `1777` with whichever
 
 # Running the robot
 
+Make sure to have your sources set.
+```bash
+administrator@MR003-230106:~$ source /opt/ros/foxy/setup.sh
+administrator@MR003-230106:~$ . ~/ros2_ws/install/local_setup.bash
+```
 Create 2 Bridge  
 `ros2 launch create_bringup create_2.launch`  
 RPLiDAR  
