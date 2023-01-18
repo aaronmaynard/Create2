@@ -6,45 +6,51 @@
 # Run this file via './post-installer.sh'
 echo [POST-INSTALLER] - $(date +"%T") - Starting post-installer script...
 echo [POST-INSTALLER] - $(date +"%T") - Setting up ROS repositories...
-sudo apt install software-properties-common
-sudo add-apt-repository universe
-sudo apt update && sudo apt install curl -y
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt install curl -y # if you haven't already installed curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 sudo apt update
-sudo apt upgrade -y
 # Installing ROS
 echo [POST-INSTALLER] - $(date +"%T") - Installing ROS...
-sudo apt install ros-foxy-desktop python3-argcomplete ros-dev-tools -y
-# Replace ".bash" with your shell if you're not using bash
-# Possible values are: setup.bash, setup.sh, setup.zsh
-source /opt/ros/foxy/setup.bash
+sudo apt install ros-melodic-desktop-full -y
+# Setting Up ROS Environment
+echo [POST-INSTALLER] - $(date +"%T") - Setting Up ROS Environment...
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+# If you use zsh instead of bash you need to run the following commands to set up your shell:
+# echo "source /opt/ros/melodic/setup.zsh" >> ~/.zshrc
+# source ~/.zshrc
+# Dependencies for building packages
+echo [POST-INSTALLER] - $(date +"%T") - Installing Build Dependencies...
+sudo apt install python-rosdep python-catkin-tools python-rosinstall python-rosinstall-generator python-wstool build-essential -y
+sudo apt install python-rosdep -y
+sudo rosdep init
+rosdep update
+# Installing RealSense Camera SDK
+echo [POST-INSTALLER] - $(date +"%T") - Installing ROS Wrapper for Intel RealSense Devices...
+sudo apt-get install ros-$ROS_DISTRO-realsense2-camera -y
+# Installing ROSBridge 	Suite
+echo [POST-INSTALLER] - $(date +"%T") - Installing ROSBridgeSuite...
+sudo apt-get install ros-$ROS_DISTRO-rosbridge-suite -y
+# Installing Web Video Server
+echo [POST-INSTALLER] - $(date +"%T") - Manually building Web Video Server...
+sudo apt-get install ros-$ROS_DISTRO-web-video-server -y
 # Installing RPLiDAR
 echo [POST-INSTALLER] - $(date +"%T") - Installing RPLiDAR...
-sudo apt-get install ros-foxy-rplidar-ros -y
-# Installing RealSense Camera SDK
-echo [POST-INSTALLER] - $(date +"%T") - Installing RealSense SDK...
-sudo apt-get install ros-foxy-realsense2-camera -y
-# You can test if the install was successful via: 
-# ros2 launch realsense2_camera rs_launch.py enable_pointcloud:=true device_type:=d435
-# Installing ROSBridge Suite
-echo [POST-INSTALLER] - $(date +"%T") - Installing ROSBridgeSuite...
-sudo apt-get install ros-foxy-rosbridge-suite -y
+sudo apt-get install ros-$ROS_DISTRO-rplidar-ros -y
 # Installing Create2 Bridge
 echo [POST-INSTALLER] - $(date +"%T") - Manually building the Create2 bridge...
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
-git clone https://github.com/autonomylab/create_robot.git --branch foxy
-git clone https://github.com/AutonomyLab/libcreate
-echo [POST-INSTALLER] - $(date +"%T") - Manually building Web Video Server...
-git clone https://github.com/RobotWebTools/web_video_server.git --branch ros2
-cd ~/ros2_ws
-sudo rosdep init
-# If there are issues with the above, network security may be the issue (such as Google WiFi).  Change to a different network.
+cd ~
+mkdir -p catkin_ws/src
+cd ~/catkin_ws
+catkin init
+cd ~/catkin_ws/src
+git clone https://github.com/autonomylab/create_robot.git
+cd ~/catkin_ws
 rosdep update
-rosdep install --from-paths src -i -y
-colcon build
+rosdep install --from-paths src -i -y 
+catkin build
 # Finishing install
 echo [POST-INSTALLER] - $(date +"%T") - Checking permissions and sourcing workspace...
 sudo usermod -a -G dialout $USER
-. ~/ros2_ws/install/local_setup.bash
+source ~/catkin_ws/devel/setup.bash

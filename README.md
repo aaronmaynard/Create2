@@ -4,8 +4,8 @@
 Hi! Welcome to my documentation of the trials and tribulations I may be going through when installing ROS2 on the iRobot Create2. Many of the tutorials online have become outdated as versions of Ubuntu and ROS get updated. I am using the following in this branch:
 
 **Software**  
-Ubuntu Focal 20.04.5  
-ROS2 Foxy  
+Ubuntu Focal 18.04.6  
+ROS Melodic  
 
 **Hardware**  
 Raspberry Pi Model 3B+  
@@ -19,13 +19,31 @@ iRobot Create 2
 
 Launch [Raspberry Pi Imager](https://www.raspberrypi.com/software/) v1.6.2 or greater.
 
-Set **Operating System** to **Ubuntu Server 20.04.5 LTS (64-bit)**. If this version is no longer available, you can download the image directly from Ubuntu's archives and select "Use custom".
+Set **Operating System** to **Ubuntu Server 18.04.6 LTS (64-bit)**. If this version is no longer available, you can download the image directly from Ubuntu's [archives](https://releases.ubuntu.com/18.04/) and select "Use custom".
 
 Set **Storage** to the device hosting your SD card (+ gb, 32 gb recommended).
 
+There are two methods of enabling SSH and establishing a WiFi connection on the device.
+
+### Method 1 - Raspberry Pi Imager
+
+Open the Advanced Options section in the installer by clicking on the COG button.
+
+Enable the following options:
+
+* Set Hostname: [robotname].local
+* Enable SSH (Use password authentication unless you know what your doing)
+* Set username and password
+* Configure wireless LAN
+* Set locale settings
+
+You may leave Persistent Settings as default.
+
+### Method 2 - Manual 
+
 Write to the storage device - A warning will appear declaring all existing data on the storage device will be erased.
 
-## Set wireless connection via boot partition
+### Set wireless connection via boot partition
 
 Enter the `/Volumes/boot` directory - this will be the root directory on windows.
 
@@ -59,28 +77,23 @@ You can kill the process via `sudo kill -9 1777` replacing `1777` with whichever
 
 # Running the robot
 
-Make sure to have your sources set.
-```bash
-administrator@MR003-230106:~$ source /opt/ros/foxy/setup.sh
-administrator@MR003-230106:~$ . ~/ros2_ws/install/local_setup.bash
-```
 Create 2 Bridge  
-`ros2 launch create_bringup create_2.launch`  
+`roslaunch create_bringup create_2.launch`  
 RPLiDAR  
-`ros2 run rplidar_ros rplidar_composition`  
+`roslaunch rplidar_ros rplidar.launch`  
 RealSense  
-`ros2 run realsense2_camera realsense2_camera_node`  
+`roslaunch realsense2_camera rs_camera.launch`  
 ROSBridge Suite  
-`ros2 run rosbridge_server rosbridge_websocket`  
+`roslaunch rosbridge_server rosbridge_websocket.launch`  
 Web Video Server  
-`ros2 run web_video_server web_video_server`  
+`rosrun web_video_server web_video_server _port:=11315`  
 
 ### Building Packages
 
 ```
-cd ~/ros2_ws
-rosdep install --from-paths src --ignore-src -r -y
-colcon build
+cd ~/catkin_ws
+rosdep install --from-paths src -i  
+catkin build
 ```
 
 #### Failed packages
