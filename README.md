@@ -75,6 +75,8 @@ If you run into an error such as:
 `Waiting for cache lock: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 1777 (unattended-upgr)`
 You can kill the process via `sudo kill -9 1777` replacing `1777` with whichever is described in the error.  You may then run `sudo bash post-installer.sh`.
 
+You can view the exact process locking the resource via `ps aux | grep -i apt`.
+
 # Running the robot
 
 Create 2 Bridge  
