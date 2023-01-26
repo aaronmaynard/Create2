@@ -23,7 +23,6 @@ source ~/.bashrc
 # Dependencies for building packages
 echo [POST-INSTALLER] - $(date +"%T") - Installing Build Dependencies...
 sudo apt install python-rosdep python-catkin-tools python-rosinstall python-rosinstall-generator python-wstool build-essential -y
-sudo apt install python-rosdep -y
 sudo rosdep init
 rosdep update
 # Installing RealSense Camera SDK
