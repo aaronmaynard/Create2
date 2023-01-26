@@ -52,4 +52,5 @@ catkin build
 # Finishing install
 echo [POST-INSTALLER] - $(date +"%T") - Checking permissions and sourcing workspace...
 sudo usermod -a -G dialout $USER
-source ~/catkin_ws/devel/setup.bash
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
