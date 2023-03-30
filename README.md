@@ -33,7 +33,7 @@ Enable the following options:
 
 * Set Hostname: [robotname].local
 * Enable SSH (Use password authentication unless you know what your doing)
-* Set username and password
+* Set username and password (I recommend administrator and your last name for local development)
 * Configure wireless LAN
 * Set locale settings
 
