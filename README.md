@@ -84,11 +84,11 @@ Create 2 Bridge
 RPLiDAR  
 `roslaunch rplidar_ros rplidar.launch`  
 RealSense  
-`roslaunch realsense2_camera rs_camera.launch`  
+`roslaunch realsense2_camera rs_camera.launch color_width:=540 color_height:=960`  
 ROSBridge Suite  
 `roslaunch rosbridge_server rosbridge_websocket.launch`  
 Web Video Server  
-`rosrun web_video_server web_video_server _port:=11315`  
+`rosrun web_video_server web_video_server _port:=8080`  
 
 ### Building Packages
 
