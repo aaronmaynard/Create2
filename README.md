@@ -90,6 +90,10 @@ ROSBridge Suite
 Web Video Server  
 `rosrun web_video_server web_video_server _port:=8080`  
 
+## Additional packages
+
+To play audio or sound, it is recommended to install the audio_common ros driver.
+
 ### Building Packages
 
 ```
@@ -127,7 +131,7 @@ Summary: 0 packages finished [38min 48s]
 Thats it! Some commands may take some time to be executed, just wait patiently for the commands to finish.
 To verify your swap size run the following command and you will see the swap size: `free -m`
 
-### Failed RealSense ROS Package
+#### Failed RealSense ROS Package
 
 If you see an error stating that you are unable to open the USB interface when running the realsense package, you will need to create a rules file as described in https://github.com/IntelRealSense/realsense-ros/issues/1408. 
 
