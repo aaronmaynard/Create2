@@ -92,7 +92,19 @@ Web Video Server
 
 ## Additional packages
 
-To play audio or sound, it is recommended to install the audio_common ros driver.
+To play audio or sound, it is recommended to install the audio_common ros driver.  You will need to run the following commands as an example:
+
+```
+rosrun sound_play soundplay_node.py
+rosrun sound_play say.py 'Hello World'
+```
+
+#### Enabling audio on Ubuntu 18.04
+
+`sudo nano /boot/firmware/usercfg.txt`
+insert the following line:
+`dtparam=audio=on`
+reboot.
 
 ### Building Packages
 
